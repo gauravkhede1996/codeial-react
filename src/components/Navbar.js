@@ -23,7 +23,7 @@ const Navbar=()=>{
                             <a href="/"> Log Out </a>
                         </li>
                         <li> 
-                            <a href="/"> Register</a> 
+                            <a href="/"> Register Here</a> 
                         </li>
 
                     </ul>
