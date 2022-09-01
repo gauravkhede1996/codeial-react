@@ -11,7 +11,7 @@ const customFetch=async (url,{body,...customConfig})=>{
     }
     const config={
         ...customConfig,
-        headers:{
+        headers:{   
             ...headers,
             ...customConfig.headers
         }
@@ -40,16 +40,10 @@ const customFetch=async (url,{body,...customConfig})=>{
         };
     }
 }
-// const namely=(name)=> `https://agify.io/?name=${name}`;
+
 export const getPosts= (page=1,limit=5)=>{
     return customFetch(API_URLS.posts(page,limit),{
         method:'GET',
         
     })
 }
-// export const getName=(name='gaurav')=>{
-//     return customFetch(namely(name),{
-//         method:'GET',
-//         mode:'no-cors'
-//     })
-// }
