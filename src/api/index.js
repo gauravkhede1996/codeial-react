@@ -20,9 +20,9 @@ const customFetch=async (url,{body,...customConfig})=>{
         config.body=JSON.stringify(body);
     }
     try{
-        console.log(fetch(url,config),' is the result of fetch');
+        console.log(fetch(url,config),' is the result of fetch for url',url);
         const response=await fetch(url,config);
-        console.log(response,' is the response');
+        console.log(response,' is the response of url',url);
         const data=await response.json();
         console.log(data,' is the data');
         if(data.success){
@@ -40,16 +40,21 @@ const customFetch=async (url,{body,...customConfig})=>{
         };
     }
 }
-// const namely=(name)=> `https://agify.io/?name=${name}`;
+
 export const getPosts= (page=1,limit=5)=>{
     return customFetch(API_URLS.posts(page,limit),{
         method:'GET',
         
     })
 }
-// export const getName=(name='gaurav')=>{
-//     return customFetch(namely(name),{
-//         method:'GET',
-//         mode:'no-cors'
-//     })
-// }
+export const getProducts=()=>{
+    return customFetch("http://localhost:8000/product/fetchProducts",{
+        method:'GET',
+        
+    })
+}
+export const createProduct=(values)=>{
+    console.log(values);
+    return;
+    // return customFetch("http://localhost:8000/product/create")
+}
