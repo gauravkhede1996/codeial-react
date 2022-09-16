@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getPosts,getProducts} from '../api';
+import { useEffect} from "react";
+import { getPosts} from '../api';
 import CheckingRoutes from './CheckingRoutes';
 import Login from '../pages/Login';
 import Home from '../pages/Home';
@@ -21,29 +21,30 @@ import Navbar from './Navbar';
 //   <div> Home</div>
 // }
 function App() {
-  const [data,setData]=useState([]);
-  console.log(typeof data," is type of data and data is ",data);
+  // const [result,setResult]=useState([]);
+  // console.log(typeof result," is type of data and data is ",result);
   useEffect(()=>{
     const fetchPosts=async ()=>{
       const response =await getPosts();
       console.log('response',response);
     }
     fetchPosts();
-    const fetchProducts=async ()=>{
-      const response =await getProducts();
-      setData([response]);
-      console.log(typeof response);
-      console.log('response',response);
-    }
-    fetchProducts();
+    // const fetchProducts=async ()=>{
+    //   const response =await getProducts();
+    //   await setResult([response]);
+    //   console.log(typeof response);
+    //   console.log('response',response);
+    // }
+    // fetchProducts();
   },[]);
+   
   return (
     
     <div className="App">
       <BrowserRouter>
       <Navbar /> 
       <Routes>
-      <Route exact path="/" element={<Home data={data[0].data}/>}></Route>
+      <Route exact path="/" element={<Home/>}></Route>
       <Route exact path="/CheckingRoutes" element={<CheckingRoutes/>}></Route>
       <Route path="/signup" element={<h1>H1 Component</h1>}> </Route>
       <Route path="login/:user" element={<Login />}></Route>

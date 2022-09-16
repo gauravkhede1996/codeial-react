@@ -1,9 +1,21 @@
 import '../styles/Home.css';
-const Home=(props)=>{
+import {getProducts} from '../api'
+import { useEffect, useState } from 'react';
+const Home=()=>{
   // const products=props.data;
   // const renderRow=()=>{
 
   // }
+  const [result,setResult]=useState([]);
+  useEffect(()=>{
+    const fetchProducts=async ()=>{
+      const response =await getProducts();
+      await setResult([response]);
+      console.log(typeof response);
+      console.log('response',response);
+    }
+    fetchProducts();
+  },[]);
   const renderProduct=(product)=>{
     return <tr>
       <td>{product.productName}</td>
@@ -23,12 +35,16 @@ const Home=(props)=>{
           <th>Product Quantity</th>
           <th>Product Information</th>
         </tr>
-        {props.data.map(product=>{
-          return renderProduct(product);
+        {result.map(element=>{
+         return element.data.map(product=>{
+            return renderProduct(product);
+          })
+          
         })}
        </table>
-      
+       {console.log(result," is the result from home component")}
       </div>
+      
       );
     }
 export default Home;

@@ -54,7 +54,17 @@ export const getProducts=()=>{
     })
 }
 export const createProduct=(values)=>{
-    console.log(values);
-    return;
-    // return customFetch("http://localhost:8000/product/create")
+    console.log(JSON.stringify(values)," are the values we got in createProduct function");
+    
+    fetch("http://localhost:8000/product/create",{
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(values)
+    }).then(result=>{
+        console.log(result,' is the result of POST API');
+        return;
+    })
 }
