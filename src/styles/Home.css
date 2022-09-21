@@ -1,4 +1,22 @@
-table,th,td{
-    border:1px solid black;
-    padding:5px;
+.lightGreen{
+    background-color: rgb(202,234,233);
+    box-shadow: 0px 0px 9px 3px black;
 }
+.backgroundColor{
+    background-color:rgb(161, 255, 252);
+}
+.fullHeight{
+    height:calc(100%);
+}
+.twentyFiftyPercent{
+    margin-left:25%;
+}
+.fourtyFivePercent{
+    margin-left:45%;
+}
+.increaseWidthBy16{
+    width:16rem;
+}
+/* .deleteButton{
+    margin-left:48%;
+} */

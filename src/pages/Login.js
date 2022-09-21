@@ -30,9 +30,9 @@ const Login=()=>{
     <div >
         <Container>
             <Row >
-                <Col md={4}>
-                <Card border="success" className="cardElement">
-            <Card.Body className="mt-3">
+                <Col md={4} className="d-grid">
+                <Card border="success" className="cardElement gap-3">
+            <Card.Body >
                 <Card.Title>Sign Up</Card.Title>
                     <Formik initialValues={{email:"",password:""}}
                     validationSchema={validationSchema}
@@ -42,7 +42,7 @@ const Login=()=>{
                             <Field type="email" name="email" id="email"  placeholder="Enter an Email"></Field> <p id="email"><ErrorMessage name="email" /></p> <br />
                             <label id="password">Password: </label> <br />
                             <Field type="password" name="password" id="password" placeholder="Enter a password"></Field><p id="password"><ErrorMessage name="password"/></p><br />
-                            <Button className="btn-lg btn-dark btn-block"  type="submit" >SignUp</Button>
+                            <Button className="submitButton" variant="outline-danger"  type="submit" >SignUp</Button>
                         </Form>
                     </Formik>
                     <hr className="marginTop-1"></hr><Badge pill bg="secondary" className="orBadge">OR</Badge>

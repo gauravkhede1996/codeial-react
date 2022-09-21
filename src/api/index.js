@@ -68,3 +68,25 @@ export const createProduct=(values)=>{
         return;
     })
 }
+export const updateProduct=(values)=>{
+    fetch("http://localhost:8000/product/updateProduct",{
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(values)
+    }).then(result=>{
+        console.log(result,' is the result of POST API');
+        return;
+    })
+}
+export const deleteProduct=(productId)=>{
+    fetch(`http://localhost:8000/product/delete/${productId}`,{
+        method:'DELETE',
+        
+    }).then(result=>{
+        console.log(result,' is the result of POST API');
+        return;
+    })
+}
