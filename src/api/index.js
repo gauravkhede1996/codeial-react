@@ -90,3 +90,8 @@ export const deleteProduct=(productId)=>{
         return;
     })
 }
+export const searchProduct=(page,limit,selectedKeys)=>{
+    return customFetch(`http://localhost:8000/product/search/?page=${page}&limit=${limit}&selectedKeys=${selectedKeys}`,{
+        method:'GET'
+    })
+}

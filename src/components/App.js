@@ -4,10 +4,14 @@ import CheckingRoutes from './CheckingRoutes';
 import Login from '../pages/Login';
 import Home from '../pages/Home';
 import Form from '../pages/Form';
+import TableComponent from '../pages/table';
+import UserHome from '../components/userHome';
+import { useSelector } from "react-redux";
 
 import  {BrowserRouter, Routes, Route,Navigate} from "react-router-dom";
 
 import Navbar from './Navbar';
+import LoginAnt from "./loginAnt";
 
 // const Login=()=>{
 //   var params=useParams();
@@ -37,18 +41,32 @@ function App() {
     // }
     // fetchProducts();
   },[]);
+  const currentUser = useSelector(state => state.currentUser);
+  
    
   return (
     
     <div className="App">
+      
       <BrowserRouter>
       <Navbar /> 
       <Routes>
-      <Route exact path="/" element={<Home/>}></Route>
+      {(!currentUser.loggedIn || currentUser.loggedIn===false) && (
+        <>
+        <Route exact path="/" element={<Home/>}></Route>
+        <Route path="/signup" element={<h1>H1 Component</h1>}> </Route>
+        <Route path="login/:user" element={<Login />}></Route>
+        <Route path="/login" element={<LoginAnt/>}></Route>
+        </>
+      )  }
+      
+      {currentUser.loggedIn && (<>
       <Route exact path="/CheckingRoutes" element={<CheckingRoutes/>}></Route>
-      <Route path="/signup" element={<h1>H1 Component</h1>}> </Route>
-      <Route path="login/:user" element={<Login />}></Route>
       <Route path="/form" element={<Form />} />
+      <Route path="/table" element={<TableComponent />} />
+      <Route path="/userHome" element={<UserHome/>} />
+      </>)}
+      
       <Route path="/*" element={<Navigate to="/signup"/>}></Route>
       
       

@@ -1,10 +1,16 @@
 import '../styles/Home.css';
 import {deleteProduct, getProducts,updateProduct} from '../api'
 import { useEffect, useState } from 'react';
-import { Container, Row, Card,Col ,Button,Modal} from 'react-bootstrap';
+import {Button,Modal} from 'react-bootstrap';
+import {Row,Col} from 'antd';
 import {Formik,Form,Field,ErrorMessage} from 'formik';
 import * as yup from 'yup';
+import {Card,Space} from 'antd';
+import 'antd/dist/antd.css';
 import { useNavigate } from 'react-router-dom';
+const {Meta }= Card;
+
+
 const Home=()=>{
   // const products=props.data;
   // const renderRow=()=>{
@@ -56,41 +62,40 @@ const Home=()=>{
     deleteProductFunction();
   }
   const renderProduct=(product)=>{
-    return <Col md={4}><Card className="mt-2 ms-2 mb-2 me-2 p-1 ">
-    <Card.Body className="lightGreen">
-      <Card.Header >
-      <Card.Title className="d-inline ">{product.productName} </Card.Title> <span className='pull-right'><Button variant="none" onClick={()=>deleteButton(product._id)}><img src="https://cdn-icons-png.flaticon.com/512/6460/6460112.png" alt="deleteButton" style={{height:"25px"}}/></Button></span>
-      <Card.Subtitle className='text-secondary'>{product.productCategory}</Card.Subtitle>
-      </Card.Header>
-       
-      <Card.Text className='mt-3'>
+    return <Space direction="vertical"><Col className="gutter-row"><Card title={product.productName} hoverable extra={<span className='pull-right'><Button variant="none" onClick={()=>deleteButton(product._id)} ><img src="https://cdn-icons-png.flaticon.com/512/6460/6460112.png" alt="deleteButton" style={{height:"25px"}}/></Button></span>} style={{backgroundColor:"rgb(202,234,233)"}}>
+      
+      <Meta description={product.productCategory} />
       price:{product.price} <br/>
       Quantity Available : {product.quantityAvailable}  <br/>
       Product Information: {product.productInfo} <br/>
-      </Card.Text>
       <Button type="submit" variant='secondary' onClick={showModal}> Update this Product </Button>
-    </Card.Body>
-   
-  </Card> 
-  </Col>
+    </Card>
+    
+    </Col>
+    </Space>
   }
   return (
-    <Container>
+    <div >
       
         
-        <div style={{minHeight:"100vh"} } className='backgroundColor'>
-      
-        <Row>
+        <div style={{minHeight:"100vh", padding:"24px"} } className='backgroundColor' id="container" >
+        <Space direction="vertical">
+        <Row gutter={[16,16]} >
+        
         {result.map(element=>{
          return element.data.map(product=>{
             return  renderProduct(product); 
           })
           
         })}
+        
         </Row>
+        </Space>
+        
        
        {console.log(result," is the result from home component")}
       </div>
+      
       <Modal show={show} onHide={()=>closeButtonHandler(show)}>
                 <Modal.Header closeButton>
                 <Modal.Title>Add New Data</Modal.Title>
@@ -118,7 +123,7 @@ const Home=()=>{
                     <Button type="submit" onClick={()=>closeButtonHandler(show)}> Close</Button>
                 </Modal.Footer>
             </Modal>
-    </Container>
+    </div>
     
   
       

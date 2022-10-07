@@ -1,7 +1,8 @@
 import {Formik,Form,Field,ErrorMessage} from 'formik';
 import { createProduct } from '../api';
 import { useNavigate } from 'react-router-dom';
-import {Button,Modal} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
+import {Modal} from 'antd';
 import * as yup from 'yup';
 import { useState } from 'react';
 import 'antd/dist/antd.css';
@@ -38,11 +39,10 @@ const FormPage=()=>{
         <div>
             <Button type="submit" className="mt-2 mb-2" onClick={()=>closeButtonHandler(show)}> Add Data</Button>
             <DatePicker/>
-            <Modal show={show} onHide={()=>closeButtonHandler(show)}>
-                <Modal.Header closeButton>
-                <Modal.Title>Add New Data</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+            <Modal open={show} onCancel={()=>closeButtonHandler(show)}
+            footer={[<Button type="submit" onClick={()=>closeButtonHandler(show)}> Close</Button>]}
+            >
+                
                 <Formik initialValues={{productName:"",productCategory:"",productInfo:"",price:0,quantityAvailable:0}}
                     validationSchema={validationSchema}
                     onSubmit={(values)=>handleSubmit(values)}>
@@ -61,10 +61,8 @@ const FormPage=()=>{
                         <button type="submit" className="fourtyFivePercent">Submit</button>
                     </Form>
                 </Formik>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button type="submit" onClick={()=>closeButtonHandler(show)}> Close</Button>
-                </Modal.Footer>
+                
+                
             </Modal>
             
         
