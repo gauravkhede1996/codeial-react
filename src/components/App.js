@@ -12,6 +12,7 @@ import  {BrowserRouter, Routes, Route,Navigate} from "react-router-dom";
 
 import Navbar from './Navbar';
 import LoginAnt from "./loginAnt";
+import TableRevise from "../pages/tablerevise";
 
 // const Login=()=>{
 //   var params=useParams();
@@ -57,6 +58,7 @@ function App() {
         <Route path="/signup" element={<h1>H1 Component</h1>}> </Route>
         <Route path="login/:user" element={<Login />}></Route>
         <Route path="/login" element={<LoginAnt/>}></Route>
+        <Route path="/tableRevise" element={<TableRevise/>} />
         </>
       )  }
       
@@ -65,6 +67,7 @@ function App() {
       <Route path="/form" element={<Form />} />
       <Route path="/table" element={<TableComponent />} />
       <Route path="/userHome" element={<UserHome/>} />
+    
       </>)}
       
       <Route path="/*" element={<Navigate to="/signup"/>}></Route>

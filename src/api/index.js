@@ -95,3 +95,15 @@ export const searchProduct=(page,limit,selectedKeys)=>{
         method:'GET'
     })
 }
+export const uploadPhoto=(formData)=>{
+    console.log(formData," ****** is the formData");
+    fetch("http://localhost:8000/users/update",{
+        method:'POST',
+        headers:{
+            "mode":"no-cors"
+        },
+        body:formData
+    }).then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
